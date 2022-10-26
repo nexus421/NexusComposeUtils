@@ -3,6 +3,7 @@ package bayern.kickner.composeutils
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -11,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import bayern.kickner.composeutils.ui.theme.ComposeUtilsTheme
-import bayern.kickner.nexus_compose.test
+import bayern.kickner.nexus_compose.Dropdown
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +21,18 @@ class MainActivity : ComponentActivity() {
             ComposeUtilsTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    Column {
+                        Greeting("Android")
+
+                        Dropdown(items = listOf("Apfel", "Banane", "Kokosnus", "Kartoffel"), onItemClicked = {}) {
+                            if(it == null) {
+                                Text(text = "Bitte auswählen")
+                            } else {
+                                Text(text = it)
+                            }
+                        }
+
+                    }
                 }
             }
         }
