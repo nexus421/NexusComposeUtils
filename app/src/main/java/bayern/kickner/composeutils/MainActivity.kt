@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import bayern.kickner.composeutils.ui.theme.ComposeUtilsTheme
@@ -24,7 +24,13 @@ class MainActivity : ComponentActivity() {
                     Column {
                         Greeting("Android")
 
-                        Dropdown(items = listOf("Apfel", "Banane", "Kokosnus", "Kartoffel"), onItemClicked = {}) {
+                        var selected by remember {
+                            mutableStateOf("")
+                        }
+
+                        Dropdown(label = "Test", items = listOf("Apfel", "Banane", "Kokosnus", "Kartoffel"), onItemClicked = {
+                            selected = it
+                        }) {
                             if(it == null) {
                                 Text(text = "Bitte auswählen")
                             } else {
